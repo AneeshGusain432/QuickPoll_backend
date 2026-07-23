@@ -70,7 +70,10 @@ export async function getpublicPollController(
 
     const poll = await pollService.getpublicPollService(pollId as string);
 
-    return ApiResponse.success(res, "poll fetch successfully", { poll });
+    return ApiResponse.success(res, "poll fetch successfully", {
+      poll,
+      anonymousToken,
+    });
   } catch (error) {
     next(error);
   }
@@ -137,7 +140,10 @@ export async function submitResponseController(
       } catch {}
     }
 
-    const anonymousToken = req.cookies?.anonymousToken ?? null;
+    const anonymousToken =
+      req.cookies?.anonymousToken ??
+      req.headers.authorization?.split(" ")[1] ??
+      null;
 
     const { data, error } = submitResponseSchema.safeParse(req.body);
 
