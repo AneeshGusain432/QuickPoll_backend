@@ -1,0 +1,1044 @@
+{
+  "version": "8",
+  "dialect": "postgres",
+  "id": "50936a00-6aa8-4a0f-a445-f827a376bfd6",
+  "prevIds": [
+    "d8c032ba-5811-4ebe-b648-5e9351192be5"
+  ],
+  "ddl": [
+    {
+      "values": [
+        "draft",
+        "active",
+        "expired",
+        "published"
+      ],
+      "name": "poll_status",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "name": "priority_level",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "anonymous",
+        "authenticated"
+      ],
+      "name": "response_mode",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "options",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "poll_response",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "polls",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "question_answer",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "questions",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "users",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "options"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "question_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "options"
+    },
+    {
+      "type": "varchar(300)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "option",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "options"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "order_index",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "options"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "options"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "poll_response"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "poll_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "poll_response"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "respondent_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "poll_response"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "anonymous_token",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "poll_response"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "submitted_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "poll_response"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "creator_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "type": "varchar(200)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "title",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "type": "varchar(200)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "description",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "type": "poll_status",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'draft'",
+      "generated": null,
+      "identity": null,
+      "name": "status",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "type": "response_mode",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'authenticated'",
+      "generated": null,
+      "identity": null,
+      "name": "response_mode",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "expires_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "published_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "0",
+      "generated": null,
+      "identity": null,
+      "name": "response_count",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "question_answer"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "response_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "question_answer"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "question_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "question_answer"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "option_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "question_answer"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "questions"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "poll_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "questions"
+    },
+    {
+      "type": "varchar(500)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "question",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "questions"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "order_index",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "questions"
+    },
+    {
+      "type": "priority_level",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'low'",
+      "generated": null,
+      "identity": null,
+      "name": "priority_level",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "questions"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "true",
+      "generated": null,
+      "identity": null,
+      "name": "is_mandatory",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "questions"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "questions"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "name",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "email",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "varchar",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "refresh_token",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "password",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "question_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "options_question_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "options"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "question_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "order_index",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "options_question_order_unique",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "options"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "poll_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "poll_responses_poll_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "poll_response"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "poll_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "respondent_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"respondent_id\" IS NOT NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "poll_responses_authenticated_dedupe",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "poll_response"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "anonymous_token",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": "\"anonymous_token\" IS NOT NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "poll_responses_anonymous_dedupe",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "poll_response"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "creator_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "poll_creator_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "status",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "poll_status_id",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "response_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "question_answers_response_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "question_answer"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "response_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "question_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "question_answers_question_option_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "question_answer"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "poll_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "poll_questions_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "questions"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "poll_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "order_index",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "poll_order_unique",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "questions"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "question_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "questions",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "options_question_id_questions_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "options"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "poll_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "polls",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "poll_response_poll_id_polls_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "poll_response"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "respondent_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "poll_response_respondent_id_users_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "poll_response"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "creator_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "polls_creator_id_users_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "polls"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "response_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "poll_response",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "question_answer_response_id_poll_response_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "question_answer"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "question_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "questions",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "question_answer_question_id_questions_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "question_answer"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "option_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "options",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "question_answer_option_id_options_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "question_answer"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "poll_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "polls",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "questions_poll_id_polls_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "questions"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "options_pkey",
+      "schema": "public",
+      "table": "options",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "poll_response_pkey",
+      "schema": "public",
+      "table": "poll_response",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "polls_pkey",
+      "schema": "public",
+      "table": "polls",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "question_answer_pkey",
+      "schema": "public",
+      "table": "question_answer",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "questions_pkey",
+      "schema": "public",
+      "table": "questions",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "users_pkey",
+      "schema": "public",
+      "table": "users",
+      "entityType": "pks"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "email"
+      ],
+      "nullsNotDistinct": false,
+      "name": "users_email_key",
+      "schema": "public",
+      "table": "users",
+      "entityType": "uniques"
+    },
+    {
+      "value": "\"expires_at\" > \"created_at\"",
+      "name": "expires_after_created",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "polls"
+    }
+  ],
+  "renames": []
+}

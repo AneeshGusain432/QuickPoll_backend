@@ -1,0 +1,1 @@
+ALTER TABLE "questions" ALTER COLUMN "question" SET DATA TYPE varchar(500) USING "question"::varchar(500);

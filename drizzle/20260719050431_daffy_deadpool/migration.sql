@@ -1,0 +1,1 @@
+ALTER TABLE "questions" ADD COLUMN "is_mandatory" boolean DEFAULT true NOT NULL;
