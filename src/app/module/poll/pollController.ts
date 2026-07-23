@@ -62,8 +62,8 @@ export async function getpublicPollController(
     if (!anonymousToken && !req.user) {
       anonymousToken = randomUUID();
       res.cookie("anonymousToken", anonymousToken, {
-        httpOnly: true,
-        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         maxAge: 1000 * 60 * 60 * 24 * 30,
       });
     }
